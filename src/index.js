@@ -41,5 +41,5 @@ function scrollTo(element) {
       top: element.offsetTop + document.documentElement.clientWidth,
       behavior: "smooth",
     });
-  }, 100);
+  }, 500);
 }
