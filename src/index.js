@@ -5,7 +5,7 @@ import hitsTpl from "./templat.hbs";
 const searchForm = document.querySelector("#search-form");
 const loadMore = document.querySelector(".button");
 const galleryPicture = document.querySelector(".gallery");
-let quantityLength = 0;
+let quantityFetch = 0;
 
 const newsApiService = new NewsApiService();
 
@@ -19,18 +19,18 @@ function searchFormFn(e) {
   newsApiService.query = e.currentTarget.elements.query.value;
   newsApiService.resetPage();
   newsApiService.fetchArticles().then(appendHitsMarkup);
-  lengthFn();
+  showHideBtn();
 }
 
 function loadMoreFn() {
   scrollTo(galleryPicture.lastElementChild);
   newsApiService.fetchArticles().then(appendHitsMarkup);
-  lengthFn();
+  showHideBtn();
 }
 
 function appendHitsMarkup(hits) {
   galleryPicture.insertAdjacentHTML("beforeend", hitsTpl(hits));
-  quantityLength = hits.length;
+  quantityFetch = hits.length;
 }
 
 function clearPictureContainet() {
@@ -47,9 +47,9 @@ function scrollTo(element) {
   }, 1000);
 }
 
-function lengthFn() {
+function showHideBtn() {
   setTimeout(() => {
-    if (quantityLength < 12) {
+    if (quantityFetch < 12) {
       loadMore.classList.add("is-hidden");
     } else loadMore.classList.remove("is-hidden");
   }, 500);
