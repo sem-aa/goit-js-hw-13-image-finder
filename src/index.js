@@ -12,19 +12,19 @@ const newsApiService = new NewsApiService();
 searchForm.addEventListener("submit", searchFormFn);
 loadMore.addEventListener("click", loadMoreFn);
 
-function searchFormFn(e) {
+async function searchFormFn(e) {
   e.preventDefault();
 
   clearPictureContainet();
   newsApiService.query = e.currentTarget.elements.query.value;
   newsApiService.resetPage();
-  newsApiService.fetchArticles().then(appendHitsMarkup);
+  await newsApiService.fetchArticles().then(appendHitsMarkup);
   showHideBtn();
 }
 
-function loadMoreFn() {
+async function loadMoreFn() {
+  await newsApiService.fetchArticles().then(appendHitsMarkup);
   scrollTo(galleryPicture.lastElementChild);
-  newsApiService.fetchArticles().then(appendHitsMarkup);
   showHideBtn();
 }
 
@@ -38,19 +38,19 @@ function clearPictureContainet() {
 }
 
 function scrollTo(element) {
-  setTimeout(() => {
-    window.scrollTo({
-      left: 0,
-      top: element.offsetTop + document.documentElement.clientWidth,
-      behavior: "smooth",
-    });
-  }, 1000);
+  // setTimeout(() => {
+  window.scrollTo({
+    left: 0,
+    top: element.offsetTop + document.documentElement.clientWidth,
+    behavior: "smooth",
+  });
+  // }, 1000);
 }
 
 function showHideBtn() {
-  setTimeout(() => {
-    if (quantityFetch < 12) {
-      loadMore.classList.add("is-hidden");
-    } else loadMore.classList.remove("is-hidden");
-  }, 500);
+  // setTimeout(() => {
+  if (quantityFetch < 12) {
+    loadMore.classList.add("is-hidden");
+  } else loadMore.classList.remove("is-hidden");
+  // }, 500);
 }
