@@ -22,6 +22,7 @@
   "homepage": "https://sem-aa.github.io/goit-js-hw-13-image-finder",
   "dependencies": {
     "handlebars": "^4.7.6",
+    "infinite-scroll": "^3.0.6",
     "style.css": "^1.0.0"
   },
   "devDependencies": {
