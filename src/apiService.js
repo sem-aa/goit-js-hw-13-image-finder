@@ -5,7 +5,6 @@ export default class NewsApiService {
   }
 
   fetchArticles() {
-    // console.log(this);
     const key = "19324940-21d8938b8dfbc074399017655";
     const quantityPicture = 12;
     return fetch(
